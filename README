@@ -98,6 +98,9 @@ This schema can be used to build an e-commerce platform with features like:
 - Product catalog with hierarchical categories.
 - SKU-level inventory management.
 - Support for product variations (e.g., color, size).
+
+##Diagrams
+The folder contains ERD and DFD for the E-commerce. The designs help in visualing the Entity relation and the data flow between diffrent entities.
 - Customizable attributes for products.
 
 ## Notes
