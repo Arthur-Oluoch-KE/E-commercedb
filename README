@@ -100,6 +100,10 @@ This schema can be used to build an e-commerce platform with features like:
 - Support for product variations (e.g., color, size).
 - Customizable attributes for products.
 
+##Diagrams
+The folder contains ERD and DFD for the E-commerce. The designs help in visualing the Entity relation and the data flow between diffrent entities.
+ 
+
 ## Notes
 - Foreign key constraints ensure data integrity.
 - Cascading delete rules are applied to maintain consistency when related records are removed.

@@ -1,3 +1,4 @@
+Merge origin/main to sync with remote changes and add E-commercedb-main.zip
 -- This SQL script creates a database schema for an e-commerce platform with tables for brands, product categories, products, product items, images, colors, sizes, attributes, and variations. It also includes sample data for each table.
 -- E-commerce Database Schema
 CREATE DATABASE commerce;
