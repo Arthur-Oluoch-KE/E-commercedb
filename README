@@ -1,0 +1,105 @@
+# E-commerce Database Schema
+
+This project defines a relational database schema for an e-commerce platform. The schema is designed to handle various aspects of an e-commerce system, including products, brands, categories, attributes, and variations.
+
+## Database Structure
+
+### 1. `ecommerce` Database
+The database is named `ecommerce` and contains the following tables:
+
+### 2. Tables
+
+#### `brand`
+Stores information about product brands.
+- `brand_id`: Primary key, auto-incremented.
+- `name`: Brand name (required).
+- `description`: Description of the brand.
+
+#### `product_category`
+Stores hierarchical product categories.
+- `category_id`: Primary key, auto-incremented.
+- `name`: Category name (required).
+- `parent_category_id`: Foreign key referencing `product_category(category_id)`, allows nested categories.
+
+#### `product`
+Stores product details.
+- `product_id`: Primary key, auto-incremented.
+- `name`: Product name (required).
+- `brand_id`: Foreign key referencing `brand(brand_id)`.
+- `description`: Product description.
+- `base_price`: Base price of the product (required).
+
+#### `product_item`
+Represents individual product items (e.g., SKU-level details).
+- `product_item_id`: Primary key, auto-incremented.
+- `product_id`: Foreign key referencing `product(product_id)`.
+- `sku`: Unique stock-keeping unit (required).
+- `price`: Price of the product item (required).
+- `stock_quantity`: Quantity in stock (required).
+
+#### `product_image`
+Stores images for product items.
+- `image_id`: Primary key, auto-incremented.
+- `product_item_id`: Foreign key referencing `product_item(product_item_id)`.
+- `image_url`: URL of the image (required).
+- `is_primary`: Boolean indicating if the image is the primary image.
+
+#### `color`
+Stores color options for products.
+- `color_id`: Primary key, auto-incremented.
+- `name`: Color name (required).
+- `hex_code`: Hexadecimal color code.
+
+#### `size_category`
+Defines categories for sizes (e.g., clothing sizes, shoe sizes).
+- `size_category_id`: Primary key, auto-incremented.
+- `name`: Name of the size category (required).
+
+#### `size_option`
+Stores size options within a size category.
+- `size_option_id`: Primary key, auto-incremented.
+- `size_category_id`: Foreign key referencing `size_category(size_category_id)`.
+- `value`: Size value (required).
+
+#### `product_variation`
+Represents variations of a product item (e.g., color and size).
+- `variation_id`: Primary key, auto-incremented.
+- `product_item_id`: Foreign key referencing `product_item(product_item_id)`.
+- `color_id`: Foreign key referencing `color(color_id)`.
+- `size_option_id`: Foreign key referencing `size_option(size_option_id)`.
+
+#### `attribute_category`
+Defines categories for product attributes.
+- `attribute_category_id`: Primary key, auto-incremented.
+- `name`: Name of the attribute category (required).
+
+#### `attribute_type`
+Defines types of attributes within a category.
+- `attribute_type_id`: Primary key, auto-incremented.
+- `attribute_category_id`: Foreign key referencing `attribute_category(attribute_category_id)`.
+- `name`: Name of the attribute type (required).
+- `data_type`: Data type of the attribute (`text`, `number`, or `boolean`).
+
+#### `product_attribute`
+Stores attribute values for products.
+- `attribute_id`: Primary key, auto-incremented.
+- `product_id`: Foreign key referencing `product(product_id)`.
+- `attribute_type_id`: Foreign key referencing `attribute_type(attribute_type_id)`.
+- `value`: Attribute value (required).
+
+## Relationships
+- Products are associated with brands, categories, and attributes.
+- Product items represent specific SKUs and can have variations (e.g., color and size).
+- Images are linked to product items.
+- Attributes are categorized and typed for flexibility.
+
+## Usage
+This schema can be used to build an e-commerce platform with features like:
+- Product catalog with hierarchical categories.
+- SKU-level inventory management.
+- Support for product variations (e.g., color, size).
+- Customizable attributes for products.
+
+## Notes
+- Foreign key constraints ensure data integrity.
+- Cascading delete rules are applied to maintain consistency when related records are removed.
